@@ -1,0 +1,48 @@
+{% load static %}<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rắn săn mồi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'game/snake.css' %}">
+</head>
+<body data-scores-url="{% url 'game:scores' %}" data-csrf="{{ csrf_token }}">
+<main>
+  <h1>Rắn săn mồi</h1>
+  <p class="sub">Ăn táo, lớn dài ra, đừng đâm vào tường hay chính mình.</p>
+
+  <div class="bar">
+    <span>Điểm<b id="score">0</b></span>
+    <span>Cao nhất<b id="best">0</b></span>
+  </div>
+
+  <div class="board">
+    <canvas id="game" width="480" height="480" aria-label="Màn chơi rắn săn mồi"></canvas>
+
+    <div class="overlay" id="startBox">
+      <h2>Sẵn sàng chưa?</h2>
+      <p>Dùng phím mũi tên hoặc WASD. Vuốt trên điện thoại.</p>
+      <button id="startBtn">Bắt đầu chơi</button>
+    </div>
+
+    <div class="overlay" id="overBox" hidden>
+      <h2>Thua rồi!</h2>
+      <p id="finalText"></p>
+      <div class="save-row" id="saveRow">
+        <input id="nameInput" maxlength="12" placeholder="Tên của bạn" autocomplete="off">
+        <button id="saveBtn">Lưu điểm</button>
+      </div>
+      <button id="againBtn">Chơi lại</button>
+    </div>
+  </div>
+
+  <p class="help">Phím cách: tạm dừng / tiếp tục.</p>
+
+  <h3>Bảng xếp hạng</h3>
+  <ol id="board"></ol>
+</main>
+<script src="{% static 'game/snake.js' %}"></script>
+</body>
+</html>
